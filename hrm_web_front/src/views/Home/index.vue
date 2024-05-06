@@ -49,11 +49,8 @@
   </page-header-wrapper>
   <page-body-warapper class="page-body">
   <a-row class="container">
-    <Jobs />
-  </a-row>
-  <a-row class="container">
       <a-card  class="card2">
-      <h3 slot="header">通告</h3>
+      <h3 slot="header">公告</h3>
       <div class="fbs" style="height: 200px; width: 100%;">
        <a-list
        :grid="{ gutter: 10, column: 1 }"
@@ -73,7 +70,7 @@
           </a-list-item>
           <a-modal
           v-model:visible="noticeVisible"
-          title="通告详情"
+          title="公告详情"
           footer=""
           style="width: 80%;height: auto;"
           >
@@ -94,6 +91,9 @@
       </div>
     </a-card>
   </a-row>
+  <a-row class="container">
+    <!-- <Jobs /> -->
+  </a-row>
   </page-body-warapper>
   </main>
   <a-back-top />
@@ -101,7 +101,7 @@
 
 <script setup lang='ts'>
 import { ref, onMounted } from 'vue'
-import Jobs from '@/components/Jobs/index.vue'
+// import Jobs from '@/components/Jobs/index.vue'
 import { Employee } from '@/types/eployee.ts';
 import { getNotices } from '../../utils/api.ts';
 

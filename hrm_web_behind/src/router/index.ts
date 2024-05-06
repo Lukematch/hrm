@@ -31,6 +31,7 @@ export const routes = [
           { path:'/dimission',component : () => import('@/views/Employee/dimission/index.vue')}
         ]
       },
+      { path:'/salary',component : () => import('@/views/Salary/index.vue')},
       { path:'/performance',component : () => import('@/views/Performance/index.vue')},
       { path:'/feedback',component : () => import('@/views/Feedback/index.vue')},
     ]

@@ -29,7 +29,8 @@ import {
   CarryOutOutlined,
   CommentOutlined,
   TeamOutlined,
-  DashboardOutlined
+  DashboardOutlined,
+  DollarCircleOutlined
 } from '@ant-design/icons-vue';
 import { MenuProps } from 'ant-design-vue';
 import { useRouter } from 'vue-router';
@@ -48,8 +49,8 @@ const items = ref<MenuProps['items']>([
   {
     key: 'notices',
     icon: () => h(InfoCircleOutlined),
-    label: '通告管理',
-    title: '通告管理',
+    label: '公告管理',
+    title: '公告管理',
   },
   {
     key: 'attendance',
@@ -100,16 +101,22 @@ const items = ref<MenuProps['items']>([
     ]
   },
   {
+    key: 'salary',
+      icon: () => h(DollarCircleOutlined),
+    label: '工资管理',
+    title: '工资管理',
+  },
+  {
     key: 'performance',
     icon: () => h(DashboardOutlined),
-    label: '绩效考核',
-    title: '绩效考核',
+    label: '工作项管理',
+    title: '工作项管理',
   },
   {
     key: 'feedback',
     icon: () => h(CommentOutlined),
-    label: '反馈中心',
-    title: '反馈中心',
+    label: '反馈管理',
+    title: '反馈管理',
   },
 ]);
 const onClick = (e:any)=>{

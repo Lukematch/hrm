@@ -24,17 +24,18 @@ export class TrainingController {
   }
   // 员工提交培训体会
   @Patch(':id/experience')
-  updateExperience(@Param('id') id: string, @Body() body: any) {
+  updateExperience(@Param('id') id: number, @Body() body: any) {
     return this.trainingService.updateExperience(id, body);
   }
   // 培训状态 已选中、体会待考核、培训通过、培训驳回
   @Patch(':id/status')
-  updateStatus(@Param('id') id: string, @Body() body: any) {
+  updateStatus(@Param('id') id: number, @Body() body: any) {
     return this.trainingService.updateStatus(id, body);
   }
+
   // 删除
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.trainingService.remove(id);
   }
 }

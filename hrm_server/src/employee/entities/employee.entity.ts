@@ -5,8 +5,6 @@ export class Employee {
   @PrimaryColumn()
   e_id: number
   @Column()
-  avatar: string
-  @Column()
   name: string
   @Column()
   age: number
@@ -16,8 +14,6 @@ export class Employee {
   e_section: string
   @Column()
   e_grade: string
-  @Column()
-  salary: number
   @Column()
   e_identification: string
   @Column()

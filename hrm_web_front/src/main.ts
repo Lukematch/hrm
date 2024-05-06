@@ -10,12 +10,14 @@ import App from './App.vue'
 import  router  from './router/index.ts'
 import { createPinia } from 'pinia';
 'pinia'
+import relativeTime from 'dayjs/plugin/relativeTime.js';
 
 
 const app = createApp(App)
 
 dayjs.locale('zh-cn');
 dayjs.extend(updateLocale);
+dayjs.extend(relativeTime);
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
 });

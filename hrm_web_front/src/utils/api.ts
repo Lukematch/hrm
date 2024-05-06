@@ -91,5 +91,89 @@ export const createOneTraining = (data: any) => {
     data: data
   })
 }
+// 通过工号获取培训中心列表
+export const getTrainingById = (id: number) => {
+  return http.get({
+    url: `/api/training/${id}/e_id`
+  })
+}
+// 员工提交培训体会
+export const updateExperience = (id: number, data: any) => {
+  return http.patch({
+    url: `/api/training/${id}/experience`,
+    data: data
+  })
+}
+// 删除培训中心记录
+export const deleteTraining = (id: number) => {
+  return http.delete(`/api/training/${id}`)
+}
+
+// 按照工号获取工资列表
+export const getSalaryListById = (id: number) => {
+  return http.get({
+    url: `/api/salary/${id}`
+  })
+}
+
+// 调换岗位申请新增
+export const relieveApply = (data: any) => {
+  return http.post({
+    url: `/api/relieve-apply`,
+    data: data
+  })
+}
+// 根据工号获取调换岗位申请列表
+export const getRelieveApplyById = (id: number) => {
+  return http.get({
+    url: `/api/relieve-apply/${id}`
+  })
+}
+// 删除调换岗位申请
+export const deleteRelieveApply = (id: number) => {
+  return http.delete(`/api/relieve-apply/${id}`)
+}
+
+// 离职申请新增
+export const dimissionApply = (data: any) => {
+  return http.post({
+    url: `/api/dimission-apply`,
+    data: data
+  })
+}
+// 根据工号获取离职申请列表
+export const getDimissionApplyById = (id: number) => {
+  return http.get({
+    url: `/api/dimission-apply/${id}`
+  })
+}
+// 删除离职申请
+export const deleteDimissionApply = (id: number) => {
+  return http.delete(`/api/dimission-apply/${id}`)
+}
 
 
+// 按照工号获取工作项列表
+export const getWorksById = (id: number) => {
+  return http.get({
+    url: `/api/jobs/${id}`
+  })
+}
+// 新增工作项
+export const addWork = (data: any) => {
+  return http.post({
+    url: `/api/jobs`,
+    data: data
+  })
+}
+// 编辑工作项
+export const editWork = (id:number, data: any) => {
+  return http.patch({
+    url: `/api/jobs/${id}`,
+    data: data
+  })
+}
+// 删除工作项
+export const deleteWork = (id: number) => {
+  return http.delete(`/api/jobs/${id}`)
+}

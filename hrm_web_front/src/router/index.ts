@@ -24,6 +24,7 @@ export const routes = [
         { path:'/training',component : () => import('@/views/Train/training/index.vue')},
       ]},
       { path:'/workbench', children:[
+        { path:'/salary',component : () => import('@/views/Workbench/salary/index.vue') },
         { path:'/jobs',component : () => import('@/views/Workbench/jobs/index.vue')},
         { path:'/transfer',component : () => import('@/views/Workbench/transfer/index.vue')},
       ]},

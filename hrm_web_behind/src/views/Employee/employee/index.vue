@@ -41,9 +41,6 @@
           <a-form-item name="e_grade" label="所属岗位">
             <a-select v-model:value="employeeGrade" placeholder="请选择" :options="emGrade.map((gra:any) => ({ value: gra }))"/>
           </a-form-item>
-          <a-form-item name="salary" label="员工工资">
-            <a-input-number v-model:value="employeeFormState.salary" />
-          </a-form-item>
           <a-form-item name="e_identification" label="身份证信息">
             <a-input v-model:value="employeeFormState.e_identification" />
           </a-form-item>
@@ -126,9 +123,6 @@
           </a-form-item>
           <a-form-item name="e_grade" label="所属岗位">
             <a-select v-model:value="editEmployeeGrade" placeholder="请选择" :options="editEmGrade.map((gra:any) => ({ value: gra }))"/>
-          </a-form-item>
-          <a-form-item name="salary" label="员工工资">
-            <a-input-number v-model:value="newEmployeeFormState.salary" />
           </a-form-item>
           <a-form-item name="e_identification" label="身份证信息">
             <a-input v-model:value="newEmployeeFormState.e_identification" />
@@ -251,7 +245,6 @@ const columns:any = [
     onFilter: (value:string, record:any) => record.e_section.indexOf(value) === 0
   },
   { title: '职位', dataIndex: 'e_grade', key: 'e_grade', width: 100, align: 'center'},
-  { title: '工资', dataIndex: 'salary', key: 'salary', width: 100, align: 'center' },
   { title: '身份证信息', dataIndex: 'e_identification', key: 'e_identification', width: 170, align: 'center' },
   { title: '地址', dataIndex: 'e_address', key: 'e_address', width: 100, align: 'center' },
   { title: '邮箱', dataIndex: 'e_mail', key: 'e_mail', width: 150, align: 'center' },
@@ -287,7 +280,6 @@ const onOk = async () => {
   employeeFormState.value.e_id = Number(newEmployeeId.value)
   // 将员工表单中的整型数据转换为数字类型
   employeeFormState.value.age = Number(employeeFormState.value.age)
-  employeeFormState.value.salary = Number(employeeFormState.value.salary)
   // 存储部门、岗位
   employeeFormState.value.e_section = employeeSection.value
   employeeFormState.value.e_grade = employeeGrade.value

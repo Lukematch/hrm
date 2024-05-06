@@ -56,7 +56,7 @@ export class EmployeeService {
 
   // 新增员工
   async register(requestBody: any) {
-    const { e_id, avatar, name, age, sex, e_section, e_grade, salary, e_identification, e_address, e_mail, e_phone, password } = requestBody;
+    const { e_id, name, age, sex, e_section, e_grade, e_identification, e_address, e_mail, e_phone, password } = requestBody;
     const emUser = await this.findOne(e_id);
     if (emUser.length > 0) {
       return {
@@ -67,7 +67,7 @@ export class EmployeeService {
     const salt = makeSalt(); // 制作密码盐
     const hashPwd = encryptPassword(password, salt);  // 加密密码
     const employee = this.employee.create({
-      e_id,avatar,name,age,sex,e_section,e_grade,salary,e_identification,e_address,e_mail,e_phone,password:hashPwd,salt:salt
+      e_id,name,age,sex,e_section,e_grade,e_identification,e_address,e_mail,e_phone,password:hashPwd,salt:salt
     });
     console.log(employee);
     try {

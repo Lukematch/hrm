@@ -173,6 +173,10 @@ const onFinish  = async (value:FormState)=>{
         // router.push('/login')
       }
     }
+    else {
+      message.error('登录错误！请重新尝试！')
+      router.push('/login')
+    }
   }
 }
 

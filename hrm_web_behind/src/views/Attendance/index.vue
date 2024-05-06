@@ -36,7 +36,7 @@
             </span>
           </template>
           <template v-if="column.key === 'operation'">
-            <a-popconfirm title="确认删除该请假申请？"
+            <a-popconfirm title="确认通过该请假申请？"
             ok-text="确认"
             cancel-text="取消"
             :confirm-loading="confirmLoading"
@@ -44,7 +44,7 @@
             >
               <a-button :disabled="record.leave_status === '通过申请' || record.leave_status === '驳回申请'" type="primary" style="margin-right: 5px;">通过</a-button>
             </a-popconfirm>
-            <a-popconfirm title="确认删除该请假申请？"
+            <a-popconfirm title="确认驳回该请假申请？"
             ok-text="确认"
             cancel-text="取消"
             :confirm-loading="confirmLoading"

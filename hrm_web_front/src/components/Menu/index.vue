@@ -13,9 +13,9 @@
     @click="onClick($event)"
     />
     <div class="menu-wrapper-right">
-      <a-avatar class="avatar"
+      <!-- <a-avatar class="avatar"
       :size="45"
-      />
+      /> -->
       <a-dropdown class="dropdown">
         <template #overlay>
           <a-menu @click="handleMenuClick($event)">
@@ -92,12 +92,16 @@ const items = ref<MenuProps['items']>([
     title: '工作台',
     children: [
       {
-        label: '绩效考核',
-        key: 'jobs',
+        label: '工资查询',
+        key: 'salary',
       },
       {
         label: '调动申请',
         key: 'transfer',
+      },
+      {
+        label: '工作项提交',
+        key: 'jobs',
       },
     ],
   },
@@ -119,7 +123,7 @@ const onHome = ()=>{
   current.value = ['home'];
 }
 const handleMenuClick = (e:any)=>{
-  console.log(e);
+  // console.log(e);
   switch(e.key){
     case '1':
       message.loading('正在跳转',1)

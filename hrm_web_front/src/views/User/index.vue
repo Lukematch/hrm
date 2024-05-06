@@ -4,8 +4,8 @@
       <a-tabs v-model:activeKey="activeKey" tab-position="left">
         <a-tab-pane class="tab-pane1" key="1" tab="个人信息">
           <a-card class="info">
-            <a-upload class="avatar" v-model:file-list="avatarList" disabled list-type="picture-card">
-            </a-upload>
+            <!-- <a-upload class="avatar" v-model:file-list="avatarList" disabled list-type="picture-card">
+            </a-upload> -->
             <a-card :bordered="false" class="descriptions">
               <a-descriptions bordered size="small" :column="{ xxl: 3, xl: 3, lg: 2, md: 2, sm: 2, xs: 1 }">
                 <a-descriptions-item label="工号" span="1">
@@ -38,11 +38,11 @@
                     {{ user.e_grade }}
                   </span>
                 </a-descriptions-item>
-                <a-descriptions-item label="员工工资" span="1">
+                <!-- <a-descriptions-item label="员工工资" span="1">
                   <span>
                     {{ user.salary }}元/月
                   </span>
-                </a-descriptions-item>
+                </a-descriptions-item> -->
                 <a-descriptions-item label="身份证信息" span="2">
                   <span>
                     {{ user.e_identification }}
@@ -70,13 +70,13 @@
         </a-tab-pane>
         <a-tab-pane class="tab-pane2" key="2" tab="修改信息">
           <a-card class="info">
-            <a-upload class="avatar" v-model:file-list="avatarList" action="" list-type="picture-card">
+            <!-- <a-upload class="avatar" v-model:file-list="avatarList" action="" list-type="picture-card">
               <div v-if="avatarList.length < 1">
                 <plus-outlined />
                 <div style="margin-top: 8px">Upload</div>
               </div>
             </a-upload>
-            <span style="font-size: 12px;font-weight: 100;">*点击删除照片再上传完成修改*</span>
+            <span style="font-size: 12px;font-weight: 100;">*点击删除照片再上传完成修改*</span> -->
             <a-card :bordered="false" class="form">
               <a-form ref="userRef" :model="user" name="userInfo">
                 <a-row>
@@ -120,35 +120,26 @@
                 </a-row>
                 <a-row>
                   <a-col :span="12">
-                    <a-form-item name="salary" label="员工工资" style="width:95%;">
-                      <a-input disabled :value="user.salary + '元/月'"></a-input>
-                    </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
                     <a-form-item name="e_identification" label="身份证信息" style="width:95%;">
                       <a-input v-model:value="user.e_identification"></a-input>
                     </a-form-item>
                   </a-col>
-                </a-row>
-                <a-row>
                   <a-col :span="12">
                     <a-form-item name="e_address" label="居住信息" style="width:95%;">
                       <a-input v-model:value="user.e_address"></a-input>
                     </a-form-item>
                   </a-col>
+                </a-row>
+                <a-row>
                   <a-col :span="12">
                     <a-form-item name="e_mail" label="电子邮箱" style="width:95%;">
                       <a-input v-model:value="user.e_mail"></a-input>
                     </a-form-item>
                   </a-col>
-                </a-row>
-                <a-row>
                   <a-col :span="12">
                     <a-form-item name="e_phone" label="联系电话" style="width:95%;">
                       <a-input v-model:value="user.e_phone"></a-input>
                     </a-form-item>
-                  </a-col>
-                  <a-col :span="12">
                   </a-col>
                 </a-row>
               </a-form>
@@ -219,7 +210,6 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue';
-import { PlusOutlined } from '@ant-design/icons-vue';
 
 // import { employeeStore } from '@/store/employee/index.ts';
 import { updateEmployee, updateEmPw } from '../../utils/api.ts';
@@ -228,15 +218,6 @@ import { useRouter } from 'vue-router';
 
 
 const activeKey = ref('1');
-
-const avatarList = ref([
-  {
-    uid: '-1',
-    name: 'lukematch.jpg',
-    status: 'done',
-    url: '/微信图片_20230728103352.jpg',
-  }
-])
 
 // const store = employeeStore();
 const router = useRouter()

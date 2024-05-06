@@ -6,6 +6,7 @@ import dayjs from 'dayjs'
 import updateLocale from 'dayjs/plugin/updateLocale.js';
 import 'dayjs/locale/zh-cn.js';
 import * as echarts from 'echarts';
+import relativeTime from 'dayjs/plugin/relativeTime.js';
 
 
 import App from './App.vue'
@@ -16,6 +17,7 @@ const app = createApp(App)
 
 
 dayjs.extend(updateLocale);
+dayjs.extend(relativeTime);
 dayjs.updateLocale('zh-cn', {
   weekStart: 0,
 });

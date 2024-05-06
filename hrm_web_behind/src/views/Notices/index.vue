@@ -50,9 +50,9 @@
     <a-card  class="card2">
       <a-button slot="header" style="margin-bottom: 10px;"
       @click="createNotice"
-      >新建通告</a-button>
+      >新建公告</a-button>
       <a-modal
-      title="新建通告"
+      title="新建公告"
       v-model:visible="noticeVisible"
       @Ok="onOk"
       @onCancel="()=>{
@@ -67,13 +67,13 @@
         :model="noticeFormState"
         :label-col="{ span: 5 }"
         >
-          <a-form-item label="通告标题">
+          <a-form-item label="公告标题">
             <a-input v-model:value="noticeFormState.notice_title" />
           </a-form-item>
-          <a-form-item label="通告主题">
+          <a-form-item label="公告主题">
             <a-select v-model:value="noticeFormState.notice_topic" placeholder="请选择" :options="noticeTopic"/>
           </a-form-item>
-          <a-form-item label="通告内容">
+          <a-form-item label="公告内容">
             <a-textarea v-model:value="noticeFormState.content" />
           </a-form-item>
           <a-form-item label="备注">
@@ -109,7 +109,7 @@
           </template>
         </a-table>
         <a-modal
-        title="修改通告"
+        title="修改公告"
         v-model:visible="editNoticeVisible"
         @Ok="editNoticeOk"
         @onCancel="()=>{
@@ -125,16 +125,16 @@
           :form="newNoticeFormState"
           :initialValues="editNotice"
           >
-            <a-form-item label="通告编号">
+            <a-form-item label="公告编号">
               <a-input-number disabled v-model:value="newNoticeFormState.notice_id"/>
             </a-form-item>
-            <a-form-item label="通告标题">
+            <a-form-item label="公告标题">
               <a-input disabled v-model:value="newNoticeFormState.notice_title" />
             </a-form-item>
-            <a-form-item label="通告主题">
+            <a-form-item label="公告主题">
               <a-select disabled v-model:value="newNoticeFormState.notice_topic" placeholder="请选择" :options="noticeTopic"/>
             </a-form-item>
-            <a-form-item label="通告内容">
+            <a-form-item label="公告内容">
               <a-textarea v-model:value="newNoticeFormState.content" />
             </a-form-item>
             <a-form-item label="备注">
@@ -149,9 +149,8 @@
       <div class="fbs" style="height: 200px; width: 100%;">
       </div>
     </a-card>
-
   </a-row>
-  <a-row class="container">
+  <!-- <a-row class="container">
       <a-card class="card3-1">
         <h4 slot="header">饼图 各部门员工数量比例</h4>
         <div class="fbs" style="height: 200px; width: 100%;"></div>
@@ -165,7 +164,7 @@
   </a-row>
   <a-row class="container">
 
-  </a-row>
+  </a-row> -->
   </page-body-warapper>
   </main>
   <a-back-top />
@@ -306,7 +305,7 @@ const editNoticeOk = async () => {
 }
 const confirmDeleteNotice = async (id:any) => {
   await deleteOneNotice(id)
-  message.success(`通告 ${id} 删除成功`)
+  message.success(`公告 ${id} 删除成功`)
   setTimeout(()=>{
     getNoticeList()
   },1000)

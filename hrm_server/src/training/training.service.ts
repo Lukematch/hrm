@@ -44,7 +44,7 @@ export class TrainingService {
   // update(id: number, updateTrainingDto: UpdateTrainingDto) {
   //   return `This action updates a #${id} training`;
   // }
-  updateExperience(id: string, body: any){
+  updateExperience(id: number, body: any){
     try {
       this.training.update(id, body);
       return {
@@ -58,7 +58,7 @@ export class TrainingService {
       };
     }
   }
-  updateStatus(id: string, body: any){
+  updateStatus(id: number, body: any){
     console.log(body);
     try {
       this.training.update(id, body);
@@ -74,7 +74,7 @@ export class TrainingService {
     }
   }
 
-  remove(id: string) {
+  remove(id: number) {
     try {
       this.training.delete(id);
       return {

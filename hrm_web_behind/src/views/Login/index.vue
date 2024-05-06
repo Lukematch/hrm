@@ -145,31 +145,41 @@ const onFinish  = async (value:FormState)=>{
   const { username, password } = value
   const data = await rootLogin(username, password)
   // console.log(data.data.data.token);
-  if(data.data.data.token && value.verifyCode.toLowerCase() === verifyCodeList.value.verifyCode.toLowerCase()){
-    let store = useStore()
-    let { superUser } = storeToRefs(store)
-    if(!localStorage.getItem('token')){
-      localStorage.setItem('token', data.data.data.token)
-      superUser.value.name = value.username
-      localStorage.setItem('superUser', JSON.stringify(superUser.value))
-      const expire = 3600000;
-      setTimeout(() => {
-        localStorage.removeItem('token')
-        localStorage.removeItem('superUser')
-        notification.open({
-          message: '',
-          placement: 'topRight',
-          description:'登录已过期，请重新登录！',
-        });
-        router.push('/login')
-      }, expire)
-      message.success('欢迎登录！')
-      router.push('/notices')
+  if(data.data.code === 600){
+    message.error(data.data.msg)
+  }
+  else if(data.data.code === 200){
+    if(data.data.data.token && value.verifyCode.toLowerCase() === verifyCodeList.value.verifyCode.toLowerCase()){
+      let store = useStore()
+      let { superUser } = storeToRefs(store)
+      if(!localStorage.getItem('token')){
+        localStorage.setItem('token', data.data.data.token)
+        superUser.value.name = value.username
+        localStorage.setItem('superUser', JSON.stringify(superUser.value))
+        const expire = 3600000;
+        setTimeout(() => {
+          localStorage.removeItem('token')
+          localStorage.removeItem('superUser')
+          notification.open({
+            message: '',
+            placement: 'topRight',
+            description:'登录已过期，请重新登录！',
+          });
+          router.push('/login')
+        }, expire)
+        message.success('欢迎登录！')
+        router.push('/notices')
+      } else if(localStorage.getItem('token') && username === JSON.parse(localStorage.getItem('superUser')!).username){
+        message.warning('您已登录，请勿重复登录！')
+        router.push('/notices')
+      } else {
+        message.warning('token错误，请重新登录！')
+        localStorage.clear()
+      }
     } else {
-      message.warning('您已登录，请勿重复登录！')
-      router.push('/notices')
+      message.error('登录错误！请重新尝试！')
+      router.push('/login')
     }
-
   }
 }
 

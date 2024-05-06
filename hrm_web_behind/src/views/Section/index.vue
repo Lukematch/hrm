@@ -1,5 +1,3 @@
-import { Column } from 'typeorm';
-import { getSections, createOneSection } from '../../utils/api';
 <template>
   <div class="container">
     <a-card title="部门管理" class="card">

@@ -7,12 +7,12 @@
       class="table"
       bordered
       style="height: auto; width: 100%;"
-      :scroll="{ x: 1800, y: 400 }"
+      :scroll="{ x: 1800, y: 485 }"
       :columns="columns"
       :dataSource="trainContentList"
-      :pagination="{ pageSize: 5 }"
+      :pagination="false"
       >
-        <template #bodyCell="{ column, record }">
+        <template #bodyCell="{ index, column, record }">
           <template v-if="column.key === 'operation'">
             <a-button type="primary" style="margin-right: 5px;"
             @click="moreTrainContent(record)">查看详情</a-button>
@@ -21,7 +21,7 @@
             cancel-text="取消"
             @confirm="confirmSelectedTrainContent(record)"
             >
-              <a-button>选中培训</a-button>
+              <a-button :disabled="trainDisabled[index]">选中培训</a-button>
             </a-popconfirm>
           </template>
         </template>
@@ -57,15 +57,30 @@
 import { ref, watch } from 'vue';
 import {
   getTrainContent,
-  createOneTraining
+  createOneTraining,
+  getTrainingById
 } from '@/utils/api.ts'
+import { message, notification } from 'ant-design-vue';
 
 const trainContentList = ref()
 const moreTrainContentVisible = ref(false)
 
+const userJson = localStorage.getItem('user');
+const user = JSON.parse(userJson!);
+
+const trainDisabled = ref<boolean[]>([])
+
 const getTrainContentList = async () => {
   const { data } = await getTrainContent()
   trainContentList.value = data
+  const selectedData = await getTrainingById(user?.e_id)
+  if (selectedData.data.length > 0) {
+    trainDisabled.value = trainContentList.value.map((content:any) => {
+      return selectedData.data.some((selected:any) => selected.train_id === content.train_id);
+    });
+  } else {
+    trainDisabled.value = Array(trainContentList.value.length).fill(false);
+  }
 }
 getTrainContentList()
 
@@ -119,8 +134,25 @@ const moreTrainContent = (record: any) => {
 }
 
 const confirmSelectedTrainContent = async (record: any) => {
-  console.log(record);
-  await createOneTraining()
+  let newTrain = {
+    ...record,
+    e_id: user?.e_id,
+    name: user?.name,
+    train_experience: '',
+    //已选中、待考核、培训通过、培训驳回
+    train_status: '已选中'
+  }
+  // console.log(newTrain);
+  try{
+    await createOneTraining(newTrain)
+    notification.open({
+    message: '选中成功',
+    description:
+      '请在培训中心模块继续进行培训,并提交培训体会!',
+  });
+  } catch (error) {
+    message.error('选中失败')
+  }
 }
 </script>
 
