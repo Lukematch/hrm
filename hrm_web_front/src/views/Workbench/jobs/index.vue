@@ -177,7 +177,8 @@ const columns:any = [
   filters:[
     { text: '开发', value: '开发' },
     { text: '维护', value: '维护' }
-  ]
+  ],
+  onFilter: (value:any, record:any) => record.job_type.includes(value),
   },
   { title: '工作项简述', dataIndex: 'job_descriptions', key: 'job_descriptions', width: 140, align: 'center'},
   { title: '工作项负责人', dataIndex: 'job_manager', key: 'job_manager', width: 80, align: 'center' },

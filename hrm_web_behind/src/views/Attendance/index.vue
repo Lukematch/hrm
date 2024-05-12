@@ -150,7 +150,13 @@ const fetchAttendanceData = async () => {
   // 调用后端接口获取对应日期的考勤记录
   await getAttendanceByMonth(date)
     .then(response => {
-      makeAttendanceData(response.data);
+      if (response.data.length === 0) {
+        // 考勤记录数据为空，重置 echarts 图表
+        resetChart();
+      } else {
+        // 考勤记录数据不为空，处理数据并创建图表
+        makeAttendanceData(response.data);
+      }
     })
     .catch(error => {
       message.error(`获取考勤记录失败:${error}`);
@@ -203,7 +209,14 @@ const initChart = () => {
     chart.resize();
   };
 }
-// 处理考勤记录数据
+// 重置 echarts 图表
+const resetChart = () => {
+  signInRates.value = [];
+  signOutRates.value = [];
+  // 重新创建图表
+  initChart();
+}
+
 const makeAttendanceData = async (attendanceData:any) => {
   // 初始化部门签到次数和签退次数的映射对象
   const signInCounts:any = {};
@@ -223,7 +236,12 @@ const makeAttendanceData = async (attendanceData:any) => {
       departmentEmployees[department]++;
     }
   });
-
+  // 如果没有考勤记录数据，则清空之前的数据
+  // if (attendanceData.length === 0) {
+  //   signInRates.value = [];
+  //   signOutRates.value = [];
+  //   return; // 结束函数执行
+  // }
   // 统计每个部门的签到次数和签退次数
   attendanceData.forEach((record:any) => {
     const section = record.e_section;
@@ -239,9 +257,11 @@ const makeAttendanceData = async (attendanceData:any) => {
       signOutCounts[section]++;
     }
   });
+
+
+
   // 计算签到率和签退率
   // 获取所有部门
-  // departments.value = Object.keys(signInCounts);
   departments.value.forEach(department => {
     // 假设每月20天满勤
     const fullAttendanceDays = departmentEmployees[department] * 20;

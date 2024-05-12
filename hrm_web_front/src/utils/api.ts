@@ -177,3 +177,30 @@ export const editWork = (id:number, data: any) => {
 export const deleteWork = (id: number) => {
   return http.delete(`/api/jobs/${id}`)
 }
+
+// 获取反馈列表
+export const getFeedbackList = () => {
+  return http.get({
+    url: `/api/feedback`
+  })
+}
+// 新增反馈
+export const addFeedback = (data: any) => {
+  return http.post({
+    url: `/api/feedback`,
+    data: data
+  })
+}
+// 按照f_id查询评论
+export const getCommandById = (id: number) => {
+  return http.get({
+    url: `/api/command/${id}`
+  })
+}
+// 新增评论
+export const addCommand = (data: any) => {
+  return http.post({
+    url: `/api/command`,
+    data: data
+  })
+}

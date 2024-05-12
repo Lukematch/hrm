@@ -4,9 +4,9 @@
   <a-dropdown class="dropdown">
     <template #overlay>
       <a-menu @click="handleMenuClick($event)">
-        <a-menu-item key="1">
+        <!-- <a-menu-item key="1">
           修改密码
-        </a-menu-item>
+        </a-menu-item> -->
         <a-menu-item key="2">
           退出系统
         </a-menu-item>
@@ -18,7 +18,7 @@
     </a-button>
   </a-dropdown>
   </div>
-  <a-modal
+  <!-- <a-modal
   :open="open"
   @ok=""
   @cancel="open = false"
@@ -36,23 +36,23 @@
       </a-form-item>
       <a-form-item label="管理员密码">
         <a-input />
-      </a-form-item>
+      </a-form-item> -->
       <!-- <a-form-item label="管理员描述">
         <a-textarea />
       </a-form-item> -->
-    </a-form>
-  </a-modal>
+    <!-- </a-form>
+  </a-modal> -->
 </template>
 
 <script setup lang='ts'>
 import { message } from 'ant-design-vue';
-import { ref } from 'vue';
+// import { ref } from 'vue';
 // import { onMounted } from 'vue'
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const open = ref(false);
+// const open = ref(false);
 
 
 const superUserJson:any = localStorage.getItem("superUser")
@@ -65,7 +65,7 @@ const handleMenuClick = (e: any) => {
   console.log(e);
   switch(e.key){
     case '1':
-      open.value = true
+      // open.value = true
       break
     case '2':
       message.success('退出成功')

@@ -28,9 +28,13 @@ export class CommandService {
     return this.command.find();
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} command`;
-  // }
+  find(id: string) {
+    return this.command.find({
+      where: {
+        f_id: id
+      },
+    });
+  }
 
   // update(id: number, updateCommandDto: UpdateCommandDto) {
   //   return `This action updates a #${id} command`;

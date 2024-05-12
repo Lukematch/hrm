@@ -15,7 +15,7 @@ import axios from 'axios'
 
 const app = createApp(App)
 
-
+dayjs.locale('zh-cn');
 dayjs.extend(updateLocale);
 dayjs.extend(relativeTime);
 dayjs.updateLocale('zh-cn', {
